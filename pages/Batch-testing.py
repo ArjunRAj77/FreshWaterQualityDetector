@@ -9,16 +9,26 @@ with open('fwd-classifier.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # Predicting function
-def predict_fresh_water_quality(input_features):
-    input_features = np.array(input_features).reshape(1, -1)
-    prediction = model.predict(input_features)
-    # Map the predictions to the quality label
-    quality_labels = {0: "Bad", 1: "Good"}
-    quality = [quality_labels[predict] for predict in prediction]
+def predict_fresh_water_quality(input_data):
+    # Initialize empty list to store results
+    results = []
     
-    # Print the quality of the water
-    st.write("Quality of water: ",quality)
-    return prediction
+    # Iterate through each row in input DataFrame
+    for index, row in input_data.iterrows():
+        # Reshape input features and make prediction
+        input_features = np.array(row).reshape(1, -1)
+        prediction = model.predict(input_features)[0]
+        
+        # Map prediction to quality label and append to results list
+        quality_labels = {0: "Bad", 1: "Good"}
+        quality = quality_labels[prediction]
+        results.append(quality)
+        
+    # Display results for each row
+    for i, quality in enumerate(results):
+        st.write("Quality of water for row {}: {}".format(i+1, quality))
+    
+    return results
 
 # Define function to download CSV file
 def download_csv(dataframe, filename):
