@@ -91,7 +91,7 @@ def main():
         st.write('Uploaded CSV file:')
         st.write(test_data)
             # Create a submit button
-        submit = st.button("Check  Quality 🔬")
+        submit = st.button("Check  Quality 🔬",type="primary")
 
         # If the submit button is clicked, make the prediction
         if submit:
@@ -99,6 +99,7 @@ def main():
             quality_checker=predict_fresh_water_quality(process_data)
             # Print the prediction
             st.write("The predicted quality of the water is: ", quality_checker)
+            st.balloons()
     else:
         st.info('Download the above template and fill in your data.')
 if __name__ == '__main__':

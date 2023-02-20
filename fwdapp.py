@@ -18,11 +18,7 @@ def predict_fresh_water_quality(input_features):
     # Print the quality of the water
     st.write("Quality of water: ",quality)
     return prediction
-
-# Define the main function for the app
-def main():
-    # Write the main page header
-    st.title("💧 Fresh Water Quality Detector (FWD) ")
+def fwd():
     pH = st.number_input("🧊 pH Value", value=7.0000, min_value=0.000, max_value=14.000)
     expander = st.expander("💎 Minerals present in water")
     with expander:
@@ -69,18 +65,8 @@ def main():
       with col2:
             Total_Dissolved_Solids = st.number_input("Total Dissolved Solids 🧫", value=0.000, min_value=0.000)
 
-#     date_expander = st.expander("Date")
-#     with date_expander:
-#       col1, col2,col3 = st.columns(3)
-#       with col1:
-#             Month = st.selectbox("Month", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-#       with col2:
-#             Day = st.selectbox("Day", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31])   
-#       with col3:
-#             Time_of_Day = st.selectbox("Time of Day", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24])
-
     # Create a submit button
-    submit = st.button("Submit 🔬")
+    submit = st.button("Submit 🔬",type="primary")
 
     # If the submit button is clicked, make the prediction
     if submit:
@@ -92,4 +78,14 @@ def main():
         # Print the prediction
 
         st.write("The predicted quality of the water is: ", quality_checker)
-main()
+        st.balloons()
+
+# Define the main function for the app
+def main():
+    # Write the main page header
+    st.title("💧 Fresh Water Quality Detector (FWD) ")
+    st.write("Fill the following inputs to predict the quality of water:")
+    fwd()
+    
+if __name__ == '__main__':
+    main()
