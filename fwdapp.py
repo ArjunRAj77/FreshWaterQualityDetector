@@ -17,6 +17,18 @@ def predict_fresh_water_quality(input_features):
 
     # Print the quality of the water
     st.write("Quality of water: ",quality)
+
+    # Add the prediction to the history
+    if 'prediction_history' not in st.session_state:
+        st.session_state.prediction_history = []
+    st.session_state.prediction_history.append(quality)
+    
+    # Display the history
+    if st.session_state.prediction_history:
+        prediction_history = pd.DataFrame(st.session_state.prediction_history, columns=['Predictions'])
+        st.write("Prediction History")
+        st.dataframe(prediction_history)
+
     return prediction
 def fwd():
     pH = st.number_input("🧊 pH Value", value=7.0000, min_value=0.000, max_value=14.000)
