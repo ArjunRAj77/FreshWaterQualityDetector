@@ -15,8 +15,7 @@ def predict_fresh_water_quality(input_features):
     quality_labels = {0: "Bad", 1: "Good"}
     quality = [quality_labels[predict] for predict in prediction]
 
-    # Print the quality of the water
-    st.write("Quality of water: ",quality)
+    output(quality,prediction)
 
     # Add the prediction to the history
     if 'prediction_history' not in st.session_state:
@@ -26,10 +25,14 @@ def predict_fresh_water_quality(input_features):
     # Display the history
     if st.session_state.prediction_history:
         prediction_history = pd.DataFrame(st.session_state.prediction_history, columns=['Predictions'])
-        st.write("Prediction History")
+        st.subheader(" 💾 Prediction History")
         st.dataframe(prediction_history)
+    
+    # Set page footer 
+    st.write("\n\nMade with :heart: by Team Humanoids 🤖")
+    st.write("Intel® oneAPI Hackathon for Open Innovation 2023")
+    
 
-    return prediction
 def fwd():
     pH = st.number_input("🧊 pH Value", value=7.0000, min_value=0.000, max_value=14.000)
     expander = st.expander("💎 Minerals present in water")
@@ -78,25 +81,38 @@ def fwd():
             Total_Dissolved_Solids = st.number_input("Total Dissolved Solids 🧫", value=0.000, min_value=0.000)
 
     # Create a submit button
+    st.info("👉 Click ""Submit"" to see the predicted quality of your water!")
     submit = st.button("Submit 🔬",type="primary")
 
     # If the submit button is clicked, make the prediction
     if submit:
         # Prepare the input data as a list
-        index=1
         input_data = [pH, Iron, Nitrate, Chloride, Lead, Zinc, Color, Turbidity, Fluoride, Copper, Odor, Sulfate, Conductivity, Chlorine, Manganese,Total_Dissolved_Solids,Water_Temperature,Air_Temperature]
         print(input_data)
-        quality_checker=predict_fresh_water_quality(input_data)
-        # Print the prediction
+        predict_fresh_water_quality(input_data)
 
-        st.write("The predicted quality of the water is: ", quality_checker)
-        st.balloons()
+
+# Function for the 
+def output(quality,prediction):
+    # Print the quality of the water
+    st.subheader("Output 💧")
+    if quality[0] == "Bad":
+        st.write("🚨 Alert! 🚨")
+        st.write("The predicted drinkability of your water is below safe levels. We recommend that you do not drink this water and take necessary precautions to ensure your health and safety. ")
+        st.write("Please consult with a water expert or local authorities for further guidance.")
+    else :
+        st.write("👍 Great news! 👍")
+        st.write("The predicted drinkability of your water is above safe levels. This means your water is of good quality and safe to drink. Keep up the good work in maintaining your water source and ensuring the health and safety of yourself and those around you.")
+    st.write("Detailed Analysis: ", prediction)
+    st.snow()
 
 # Define the main function for the app
 def main():
     # Write the main page header
-    st.title("💧 Fresh Water Quality Detector (FWD) ")
-    st.write("Fill the following inputs to predict the quality of water:")
+    st.title("💧 Fresh Water Quality Detector (FWD)🚰🔮")
+    st.subheader("")
+    st.subheader(" 💧 Fill out fields to predict water quality: 👉")
+    st.info("👉 Want to predict the drinkability of multiple values at once? 👀, check  our Batch-testing page!")
     fwd()
     
 if __name__ == '__main__':
