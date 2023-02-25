@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import numpy as np
 import pandas as pd
-
+st.set_page_config(page_title="FWD", page_icon="🚰", layout="centered")
 # Load the saved machine learning model from the .pkl file
 with open('fwd-classifier.pkl', 'rb') as f:
     model = pickle.load(f)
@@ -68,11 +68,6 @@ def fwd():
       col1, col2 = st.columns(2)
       with col1:
            Conductivity = st.number_input("Conductivity 🧫", value=0.000, min_value=0.000)
-      #      Source_string = st.selectbox("Source", ['NA','Lake', 'River', 'Ground', 'Spring', 'Stream', 'Aquifer',
-      #       'Reservoir', 'Well'])
-      #      source_dict = {name: index for index, name in enumerate(['NA','Lake', 'River', 'Ground', 'Spring', 'Stream', 'Aquifer',
-      #       'Reservoir', 'Well'])}
-      #      Source = source_dict[Source_string]
            Color_string = st.selectbox("Color", ['Colorless', 'Faint Yellow', 'Light Yellow', 'Near Colorless',
                'Yellow','NA'])
            color_dict = {name: index for index, name in enumerate(['Colorless', 'Faint Yellow', 'Light Yellow', 'Near Colorless',
@@ -107,7 +102,7 @@ def output(quality,input_features):
     analysis_expander = st.expander("🌌 Click here for a detailed breakdown")
     with analysis_expander:
         regulatory_limit_check(input_features)
-    # st.subheader(" ")
+
     
     st.snow()
 
