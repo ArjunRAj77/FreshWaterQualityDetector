@@ -1,2 +1,4 @@
 xgboost==1.7.3
 scikit-learn
+seaborn
+matplotlib
