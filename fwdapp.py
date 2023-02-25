@@ -244,8 +244,9 @@ def main():
     # Write the main page header
     st.title("💧 Fresh Water Quality Detector (FWD)🚰🔮")
     st.subheader("")
-    st.subheader(" 💧 Fill out fields to predict water quality: 👉")
-    st.info("👉 Want to predict the drinkability of multiple values at once? 👀, check  our Batch-testing page!")
+    st.info("👉 Check out our Batch-testing page if you want to predict the drinkability of multiple values at once! 👀🧪")
+    st.subheader(" 💧 Fill out fields to predict water quality: 👇")
+    
     fwd()
     
 if __name__ == '__main__':
