@@ -174,6 +174,19 @@ def regulatory_limit_check(input_features):
         st.info("Sulfate levels below 250 µg/litre are considered safe to drink.")
     
     st.subheader("Conductivity")
+    if conductivityvalue >1500 :
+        st.warning("Conductivity levels above 1500 µS/cm may indicate high levels of dissolved solids and may affect the taste and quality of the water.\n\nIf the conductivity level is too high, the following solutions may be used:\n\nReverse osmosis: A process where water is forced through a semipermeable membrane to remove impurities, including dissolved solids.\n\n Distillation: A process where water is boiled and the resulting steam is collected and condensed into purified water. \n\n Ion exchange: A process where ions in the water are exchanged with other ions to remove dissolved solids.")
+    else:
+        st.info("In general, for drinking water, a conductivity range of 50-1500 µS/cm (microsiemens per centimeter) is considered safe. ")
+    
+    st.subheader("Turbidity")
+    if turbidityvalue>5:
+        st.warning("Turbidity levels higher than 5 NTU can affect the taste and odor of water and can also cause gastrointestinal distress.")
+    else:
+        st.info("Turbidity is a measure of the clarity of water.\n\nTurbidity levels of 5 NTU (Nephelometric Turbidity Units) or less are considered safe for drinking water. ")
+    
+    st.subheader("Fluoride")
+    
 # Define the main function for the app
 def main():
     # Write the main page header
