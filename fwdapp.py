@@ -25,7 +25,9 @@ def predict_fresh_water_quality(input_features):
     if st.session_state.prediction_history:
         prediction_history = pd.DataFrame(st.session_state.prediction_history, columns=['Predictions'])
         st.subheader(" 💾 Prediction History")
-        st.dataframe(prediction_history)
+        prediction_expander = st.expander("🔍 Click to view previous predictions")
+        with prediction_expander:
+            st.dataframe(prediction_history)
     
     # Set page footer 
     st.write("\n\nMade with :heart: by Team Humanoids 🤖")
@@ -33,6 +35,7 @@ def predict_fresh_water_quality(input_features):
     
 
 def fwd():
+    # Taking input from the user
     pH = st.number_input("🧊 pH Value", value=7.0000, min_value=0.000, max_value=14.000)
     expander = st.expander("💎 Minerals present in water")
     with expander:
@@ -96,14 +99,16 @@ def output(quality,input_features):
     # Print the quality of the water
     st.subheader("Output 💧")
     if quality[0] == "Bad":
-        st.write("🚨 Alert! 🚨")
-        st.write("The predicted drinkability of your water is below safe levels. We recommend that you do not drink this water and take necessary precautions to ensure your health and safety. ")
-        st.write("Please consult with a water expert or local authorities for further guidance.")
+        st.warning("🚨 Alert! 🚨 \n\n The predicted drinkability of your water is below safe levels. We recommend that you do not drink this water and take necessary precautions to ensure your health and safety. \n\n Please consult with a water expert or local authorities for further guidance.")
     else :
-        st.write("👍 Great news! 👍")
-        st.write("The predicted drinkability of your water is above safe levels. This means your water is of good quality and safe to drink. Keep up the good work in maintaining your water source and ensuring the health and safety of yourself and those around you.")
-    st.subheader("Detailed Analysis: ")
-    regulatory_limit_check(input_features)
+        st.info("👍 Great news! 👍\n\nThe predicted drinkability of your water is above safe levels. This means your water is of good quality and safe to drink. Keep up the good work in maintaining your water source and ensuring the health and safety of yourself and those around you.")
+    
+    st.subheader("Detailed Analysis")
+    analysis_expander = st.expander("🌌 Click here for a detailed breakdown")
+    with analysis_expander:
+        regulatory_limit_check(input_features)
+    # st.subheader(" ")
+    
     st.snow()
 
 def regulatory_limit_check(input_features):
@@ -124,9 +129,11 @@ def regulatory_limit_check(input_features):
     conductivityvalue=input_features[0][12]
     chlorinevalue=input_features[0][13]
     manganesevalue=input_features[0][14]
-    tsdvalue=input_features[0][15]
+    tdsvalue=input_features[0][15]
     watertempvalue=input_features[0][16]
     airtempvalue=input_features[0][17] 
+
+    # Displaying the additional insights
     st.subheader("pH")
     if phvalue >= 6.5 and phvalue <=8.5:
         st.info("Congratulations! The pH of the water is within the recommended range for drinking water. \n\n This means that the water is safe to drink and should not cause any adverse health effects.")
@@ -186,7 +193,52 @@ def regulatory_limit_check(input_features):
         st.info("Turbidity is a measure of the clarity of water.\n\nTurbidity levels of 5 NTU (Nephelometric Turbidity Units) or less are considered safe for drinking water. ")
     
     st.subheader("Fluoride")
+    if fluoridevalue >1.5:
+        st.warning("High levels of fluoride can cause dental fluorosis, a condition that affects the teeth. Fluoride levels above 1.5 mg/litre are considered dangerous and should be treated to reduce the levels.\n\nOne solution is to install a reverse osmosis system or an activated alumina defluoridation filter. \n\nAnother option is to use bottled water with a low fluoride content for drinking and cooking. It is important to note that some toothpaste and mouthwash also contain fluoride, so be mindful of your overall fluoride intake.")
+    else:
+        st.info("Fluoride levels in your drinking water are within the safe limit of 1.5 mg/litre")
     
+    st.subheader("Copper")
+    if coppervalue >=80:
+        st.warning("If copper levels in your drinking water are above 80 µg/L, it could cause gastrointestinal problems such as nausea, vomiting, and diarrhea.\n\nTo reduce copper levels in your drinking water, consider installing a point-of-use water treatment system that uses activated carbon or reverse osmosis technology.\n\nIf you are concerned about the copper levels in your drinking water, you may want to have your water tested by a certified laboratory to determine the level of contamination and the best treatment option.")
+    else:
+        st.info("If copper levels in your drinking water are below 80 µg/L, your water is considered safe to drink.")
+    
+    st.subheader("Chlorine")
+    if chloridevalue >=0.2 and chloridevalue<=2.0:
+        st.info("Chlorine levels between 0.2 and 2.0 mg/litre are considered safe for drinking and effective for disinfection.")
+    else:
+        st.warning("Chlorine levels above 2.0 mg/litre may affect the taste and odor of water and may cause irritation to the eyes and skin.")
+    
+    st.subheader("Manganese ")
+    if manganesevalue <= 0.1:
+        st.info("This is considered safe for drinking and should not cause any harm to human health or the taste and odor of water.")
+    elif manganesevalue >0.1 and manganesevalue <=0.5:
+        st.info("While this level of manganese is not considered dangerous, it may affect the taste and odor of water and cause staining of clothes and fixtures.\n\n A water treatment system, such as an ion exchange or oxidation filter, can be used to reduce the levels of manganese in water.")
+    else :
+        st.warning(" This level of manganese is considered dangerous and can cause health effects, such as neurological symptoms and developmental delays in children.\n\n A water treatment system, such as a reverse osmosis or distillation system, can be used to effectively reduce the levels of manganese in water.")
+
+    st.subheader("TDS : Total Dissolved Solids")
+    if tdsvalue <= 300 :
+        st.info("This is considered excellent drinking water quality. No treatment is necessary, and the water is safe to drink.")
+    elif tdsvalue >300 and tdsvalue<=600:
+        st.info("This is considered good drinking water quality. No treatment is necessary, but some people may notice a slight mineral taste.")
+    elif tdsvalue >600 and tdsvalue <=900:
+        st.info("This is considered fair drinking water quality. Some people may notice a slightly salty taste. \n\nWater softening or reverse osmosis treatment may be recommended to reduce TDS levels.")
+    elif tdsvalue > 900 and tdsvalue<=1200:
+        st.warning("This is considered poor drinking water quality. \n\n The water may have a salty taste, and reverse osmosis or distillation treatment may be necessary to make it drinkable.")
+    else:
+        st.warning("This is considered unacceptable drinking water quality. The water may have a very salty taste and can cause health problems if consumed regularly.\n\n Reverse osmosis or distillation treatment is necessary to make the water safe to drink.")
+    
+    st.subheader("Water Temperature")
+    if watertempvalue >=4.4 and watertempvalue<=60:
+        st.info("Water temperature between 40°F (4.4°C) and 140°F (60°C) is considered safe for drinking. Temperatures outside of this range may affect the taste and odor of water.")
+    elif watertempvalue <4.4 :
+        st.warning("The water temperature is too low, it may indicate that the water source is affected by cold weather or other environmental factors. \n\nSolutions to increase the temperature may include using a water heater or insulating the water source.")
+    else :
+        st.warning("The water temperature is too high, it may indicate that the water source is affected by hot weather or other environmental factors.\n\n Solutions to decrease the temperature may include using a cooling system or providing shade to the water source.")
+    
+
 # Define the main function for the app
 def main():
     # Write the main page header
