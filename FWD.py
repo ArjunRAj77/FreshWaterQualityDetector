@@ -47,7 +47,7 @@ def fwd():
             Sulfate = st.number_input("Sulfate", value=0.000, min_value=0.000)
             
          with col2:
-                  Iron = st.number_input("Iron", value=0.500, min_value=0.000, max_value=10.000)
+                  Iron = st.number_input("Iron", value=0.000, min_value=0.000, max_value=10.000)
                   Zinc = st.number_input("Zinc", value=0.000, min_value=0.000, max_value=100.000)
                   Copper = st.number_input("Copper", value=20.000, min_value=0.000, max_value=100.000)
                   Chlorine = st.number_input("Chlorine", value=0.000, min_value=0.000)
