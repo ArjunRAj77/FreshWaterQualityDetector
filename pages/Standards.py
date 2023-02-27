@@ -4,7 +4,7 @@ import pandas as pd
 # Define the data
 data = {
     'TDS in Water (PPM)': [50, 150, 250, 300, 500, 1200],
-    'Suitability for Drinking Water': ['Excellent', 'Good', 'Fair', 'Poor', 'Poor', 'Unacceptable']
+    'Suitability for Drinking Water': ['Excellent', 'Good', 'Fair', 'Poor', 'Very Poor', 'Unacceptable']
 }
 # Define table data
 fluoride = pd.DataFrame({
@@ -58,37 +58,65 @@ manganese = pd.DataFrame({
 # Create a DataFrame from the data
 df = pd.DataFrame(data)
 
+def color_table(val):
+
+    if val == 'Suitable':
+        color = 'green'
+    elif val == 'Danger':
+        color = 'red'
+    elif val == 'Permissible limit':
+        color = 'yellow'
+    elif val == 'Not recommended':
+        color = 'yellow'
+    else:
+        color = 'black'
+    return f'color: {color}'
+
 # Define the Streamlit app
 def app():
-    st.title('Water Quality Standards')
-    st.subheader('TDS Level Chart for Drinking Water')
+    st.title('Water Quality Standards ✔')
+    st.markdown("<h3 style='text-align: left; color: black;'>TDS Level Chart for Drinking Water</h3>", unsafe_allow_html=True)
     # Display the DataFrame as a table
-    st.table(df)
+    df_table = df.style.applymap(color_table, subset=['Suitability for Drinking Water'])
+    df_table.set_table_styles([{ 'selector': 'th', 'props': [('font-weight', 'bold')] }])
+    st.write(df_table)
     # Display tables
-    st.subheader('Fluoride')
-    st.table(fluoride)
-    st.subheader('Arsenic')
-    st.table(arsenic)
-    st.subheader('Iron')
-    st.table(iron)
-    st.subheader('Nitrate')
-    st.table(nitrate)
-    st.subheader('pH')
-    st.table(ph)
-    st.subheader('Chloride')
-    st.table(chloride)
-    st.subheader('Lead')
-    st.table(lead)
-    st.subheader('Zinc')
-    st.table(zinc)
-    st.subheader('Copper')
-    st.table(copper)
-    st.subheader('Sulphate')
-    st.table(sulphate)
-    st.subheader('Chlorine')
-    st.table(chlorine)
-    st.subheader('Manganese')
-    st.table(manganese)
+    st.markdown("<h3 style='text-align: left; color: black;'>Fluoride</h3>", unsafe_allow_html=True)
+    flouride_table = fluoride.style.applymap(color_table, subset=['Suitability'])
+    st.write(flouride_table)
+    st.markdown("<h3 style='text-align: left; color: black;'>Arsenic</h3>", unsafe_allow_html=True)
+    arsenic_table = arsenic.style.applymap(color_table, subset=['Suitability'])
+    st.write(arsenic_table)
+    st.markdown("<h3 style='text-align: left; color: black;'>Iron</h3>", unsafe_allow_html=True)
+    iron_table = iron.style.applymap(color_table, subset=['Suitability'])
+    st.write(iron_table)
+    st.markdown("<h3 style='text-align: left; color: black;'>Nitrate</h3>", unsafe_allow_html=True)
+    nitrate_table = nitrate.style.applymap(color_table, subset=['Suitability'])
+    st.write(nitrate_table)
+    st.markdown("<h3 style='text-align: left; color: black;'>pH</h3>", unsafe_allow_html=True)
+    ph_table = ph.style.applymap(color_table, subset=['Suitability'])
+    st.write(ph_table)
+    st.markdown("<h3 style='text-align: left; color: black;'>Chloride</h3>", unsafe_allow_html=True)
+    chloride_table = chloride.style.applymap(color_table, subset=['Suitability'])
+    st.write(chloride_table)
+    st.markdown("<h3 style='text-align: left; color: black;'>Lead</h3>", unsafe_allow_html=True)
+    lead_table = lead.style.applymap(color_table, subset=['Suitability'])
+    st.write(lead_table)
+    st.markdown("<h3 style='text-align: left; color: black;'>Zinc</h3>", unsafe_allow_html=True)
+    zinc_table = zinc.style.applymap(color_table, subset=['Suitability'])
+    st.write(zinc_table)
+    st.markdown("<h3 style='text-align: left; color: black;'>Copper</h3>", unsafe_allow_html=True)
+    copper_table = copper.style.applymap(color_table, subset=['Suitability'])
+    st.write(copper_table)
+    st.markdown("<h3 style='text-align: left; color: black;'>Sulphate</h3>", unsafe_allow_html=True)
+    sulphate_table = sulphate.style.applymap(color_table, subset=['Suitability'])
+    st.write(sulphate_table)
+    st.markdown("<h3 style='text-align: left; color: black;'>Chlorine</h3>", unsafe_allow_html=True)
+    chlorine_table = chlorine.style.applymap(color_table, subset=['Suitability'])
+    st.write(chlorine_table)
+    st.markdown("<h3 style='text-align: left; color: black;'>Manganese</h3>", unsafe_allow_html=True)
+    manganese_table = manganese.style.applymap(color_table, subset=['Suitability'])
+    st.write(manganese_table)
 
 def main():
     app()
