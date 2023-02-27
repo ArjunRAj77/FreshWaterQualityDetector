@@ -16,6 +16,10 @@ Exploring the potential of machine learning in predicting the quality of fresh w
  
  you can simply check the website : [Fresh Water Quality Detector](https://arjunraj77-freshwaterqualitydetector-fwd-g5t41i.streamlit.app/)
 
+ ## Simple Screenshots
+ <img width="881" alt="image" src="https://user-images.githubusercontent.com/23217592/221599988-aefea354-277d-4d2a-ab7d-c0151a8c7bb8.png">
+ <img width="831" alt="image" src="https://user-images.githubusercontent.com/23217592/221600223-f6e0367d-aa56-4b22-8c48-1655728a6388.png">
+
  ## Dataset
  
  The dataset can be downloaded from [here.](https://s3-ap-southeast-1.amazonaws.com/he-public-data/datasetab75fb3.zip)
