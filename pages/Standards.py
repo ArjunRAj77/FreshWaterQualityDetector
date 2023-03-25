@@ -76,58 +76,137 @@ def color_table(val):
 def app():
     st.title('Water Quality Standards ✔')
     st.subheader("TDS Level Chart for Drinking Water")
-    # Display the DataFrame as a table
-    df_table = df.style.applymap(color_table, subset=['Suitability for Drinking Water'])
-    df_table.set_table_styles([{ 'selector': 'th', 'props': [('font-weight', 'bold')] }])
-    st.write(df_table)
-    # Display tables
+    tds_expander = st.expander("🌌 Click Here!")
+    with tds_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("Total Dissolved solids (TDS) are a measure of the dissolved combined content of all inorganic and organic materials present in a liquid in molecular, ionized, or micro-granular (colloidal sol) suspended form.")
+      with col2:
+        # Display the DataFrame as a table
+        df_table = df.style.applymap(color_table, subset=['Suitability for Drinking Water'])
+        df_table.set_table_styles([{ 'selector': 'th', 'props': [('font-weight', 'bold')] }])
+        st.write(df_table)
+        # Display tables
+
     st.subheader("Fluoride")
-    flouride_table = fluoride.style.applymap(color_table, subset=['Suitability'])
-    st.write(flouride_table)
+    fluoride_expander = st.expander("🌌 Click Here!")
+    with fluoride_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("Fluoridation of water is a controlled adjustment of fluoride to the public water supply to reduce tooth decay. Fluoride-containing water contains fluoride at a level that is effective at blocking cavities; This can occur naturally or by adding fluoride.")
+      with col2:
+        fluoride_table = fluoride.style.applymap(color_table, subset=['Suitability'])
+        st.write(fluoride_table)
 
     st.subheader("Arsenic")
-    arsenic_table = arsenic.style.applymap(color_table, subset=['Suitability'])
-    st.write(arsenic_table)
+    arsenic_expander = st.expander("🌌 Click Here!")
+    with arsenic_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("Arsenic is a naturally occurring element found in soil and rock, and can be present in water sources. It is considered a toxic substance that can cause various health issues such as skin lesions, cancer, and cardiovascular disease when consumed at high levels over long periods of time.")
+      with col2:
+        arsenic_table = arsenic.style.applymap(color_table, subset=['Suitability'])
+        st.write(arsenic_table)
 
     st.subheader("Iron")
-    iron_table = iron.style.applymap(color_table, subset=['Suitability'])
-    st.write(iron_table)
+    iron_expander = st.expander("🌌 Click Here!")
+    with iron_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("Iron is typically measured as part of the assessment of the aesthetic quality of the water, as it can cause discoloration, staining, and a metallic taste or odor. Excessive levels of iron in water can also lead to clogging of pipes and fixtures, reduced water flow, and damage to water treatment equipment. ")
+      with col2:
+        iron_table = iron.style.applymap(color_table, subset=['Suitability'])
+        st.write(iron_table)
 
     st.subheader("Nitrate")
-    nitrate_table = nitrate.style.applymap(color_table, subset=['Suitability'])
-    st.write(nitrate_table)
+    nitrate_expander = st.expander("🌌 Click Here!")
+    with nitrate_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("Nitrate is a compound that is formed naturally when nitrogen combines with oxygen or ozone. A high concentration of nitrate in well water often results in good construction, well location, and overuse of chemical fertilizers, or improper disposal of human and animal waste.")
+      with col2:
+        nitrate_table = nitrate.style.applymap(color_table, subset=['Suitability'])
+        st.write(nitrate_table)
 
     st.subheader("pH")
-    ph_table = ph.style.applymap(color_table, subset=['Suitability'])
-    st.write(ph_table)
+    ph_expander = st.expander("🌌 Click Here!")
+    with ph_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("PH Value indicates the hydrogen-ion concentration of a solution. In the form of acids and the bases in the solution dissociate to produce hydrogen ions [H +] And hydroxyl ions [OH-] Respectively, pH is used to indicate the intensity of an acidic or alkaline state.")
+      with col2:
+        ph_table = ph.style.applymap(color_table, subset=['Suitability'])
+        st.write(ph_table)
 
     st.subheader("Chloride")
-    chloride_table = chloride.style.applymap(color_table, subset=['Suitability'])
-    st.write(chloride_table)
+    chloride_expander = st.expander("🌌 Click Here!")
+    with chloride_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("High levels of chloride in drinking water can affect its taste and may cause health concerns for people on low-sodium diets. In addition, elevated chloride levels in freshwater bodies can be harmful to aquatic organisms and can contribute to the degradation of freshwater ecosystems.")
+      with col2:
+        chloride_table = chloride.style.applymap(color_table, subset=['Suitability'])
+        st.write(chloride_table)
 
     st.subheader("Lead")
-    lead_table = lead.style.applymap(color_table, subset=['Suitability'])
-    st.write(lead_table)
+    lead_expander = st.expander("🌌 Click Here!")
+    with lead_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("lead is a heavy metal that can be found in drinking water sources. It can be harmful to human health if ingested in high levels over time. Lead is often introduced into water systems through old pipes and plumbing fixtures, as well as from industrial activities and pollution.")
+      with col2:
+        lead_table = lead.style.applymap(color_table, subset=['Suitability'])
+        st.write(lead_table)
 
     st.subheader("Zinc")
-    zinc_table = zinc.style.applymap(color_table, subset=['Suitability'])
-    st.write(zinc_table)
+    zinc_expander = st.expander("🌌 Click Here!")
+    with zinc_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("Zinc is naturally present in water. The average zinc concentration in seawater is 0.6–5 ppb.")
+      with col2:
+        zinc_table = zinc.style.applymap(color_table, subset=['Suitability'])
+        st.write(zinc_table)
 
     st.subheader("Copper")
-    copper_table = copper.style.applymap(color_table, subset=['Suitability'])
-    st.write(copper_table)
+    copper_expander = st.expander("🌌 Click Here!")
+    with copper_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("Copper is a common contaminant that can affect the quality of water. It can enter water sources through industrial processes, plumbing systems, and natural deposits. In high concentrations, copper can cause a metallic taste in water and can be toxic to humans and aquatic organisms.")
+      with col2:
+        copper_table = copper.style.applymap(color_table, subset=['Suitability'])
+        st.write(copper_table)
 
     st.subheader("Sulphate")
-    sulphate_table = sulphate.style.applymap(color_table, subset=['Suitability'])
-    st.write(sulphate_table)
+    sulphate_expander = st.expander("🌌 Click Here!")
+    with sulphate_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("Sulphates are a combination of sulphur and oxygen and are part of the minerals found naturally in some soil and rock formations that include groundwater.")
+      with col2:
+        sulphate_table = sulphate.style.applymap(color_table, subset=['Suitability'])
+        st.write(sulphate_table)
 
     st.subheader("Chlorine")
-    chlorine_table = chlorine.style.applymap(color_table, subset=['Suitability'])
-    st.write(chlorine_table)
+    chlorine_expander = st.expander("🌌 Click Here!")
+    with chlorine_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("Chlorine levels of up to 4 mg per litter (mg / L or 4 parts per million (ppm)) in drinking water are considered safe. At this stage, harmful health effects are unlikely to occur. ")
+      with col2:
+        chlorine_table = chlorine.style.applymap(color_table, subset=['Suitability'])
+        st.write(chlorine_table)
 
     st.subheader("Manganese")
-    manganese_table = manganese.style.applymap(color_table, subset=['Suitability'])
-    st.write(manganese_table)
+    manganese_expander = st.expander("🌌 Click Here!")
+    with manganese_expander:
+      col1, col2 = st.columns([2, 2])
+      with col1:
+        st.write("Manganese is a naturally occurring element that can be found in rocks, soil, water, and air. In water quality analysis, manganese is an important parameter to measure as it can affect the taste, color, and odor of water. High levels of manganese in drinking water can also be harmful to human health, particularly for people with liver and kidney disorders.")
+      with col2:
+        manganese_table = manganese.style.applymap(color_table, subset=['Suitability'])
+        st.write(manganese_table)
 
 def main():
     app()

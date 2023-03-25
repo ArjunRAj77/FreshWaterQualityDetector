@@ -144,7 +144,7 @@ def regulatory_limit_check(input_features):
         st.info("Congratulations! The pH of the water is within the recommended range for drinking water. \n\n This means that the water is safe to drink and should not cause any adverse health effects.")
     elif phvalue > 8.5 :  
         st.warning(" The water is too alkaline, which may affect its taste and quality. \n\n If the pH is consistently high, it may cause health issues such as skin irritation and gastrointestinal problems. \n\n To make the water more drinkable, you could consider adding an acidifying agent like lemon juice or vinegar. However, if the pH is too high due to underlying environmental factors like limestone bedrock, it may be difficult to adjust the pH.")
-        flag_counter=flag_counter+1
+        flag_counter=flag_counter+2
     else :
         st.warning("The water is too acidic, which can also affect its taste and quality. \n\n Low pH levels can cause corrosion of plumbing fixtures and release toxic metals like lead and copper into the water. \n\n To make the water more drinkable, you could consider adding an alkalizing agent like baking soda or calcium carbonate. However, if the pH is consistently low, it may be a sign of underlying environmental factors like acid rain or nearby industrial pollution, which should be addressed to ensure safe drinking water.")
         flag_counter=flag_counter+1
@@ -225,7 +225,7 @@ def regulatory_limit_check(input_features):
         st.info("If copper levels in your drinking water are below 80 µg/L, your water is considered safe to drink.")
     
     st.subheader("Chlorine")
-    if chloridevalue >=0.2 and chloridevalue<=2.0:
+    if chlorinevalue >=0 and chlorinevalue<=2.0:
         st.info("Chlorine levels between 0.2 and 2.0 mg/litre are considered safe for drinking and effective for disinfection.")
     else:
         st.warning("Chlorine levels above 2.0 mg/litre may affect the taste and odor of water and may cause irritation to the eyes and skin.")
