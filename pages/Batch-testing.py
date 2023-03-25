@@ -25,8 +25,7 @@ def predict_fresh_water_quality(input_data):
         quality_labels = {0: "Bad", 1: "Good"}
         quality = quality_labels[prediction]
         results.append(quality)
-        
-        
+
     return results
 
 # Define function to download CSV file
@@ -52,42 +51,60 @@ def processed_data(test_data):
     return test_data
 
 def output(input_data,quality):
-
+    
     input_df = pd.DataFrame(input_data)
     combined_df = pd.concat([input_df, pd.DataFrame({'Quality': quality})], axis=1)
 
     st.subheader("Output 💧")
+    st.write("The processed data is : ")
     st.table(combined_df) 
-    # add a download button for the table
-    csv = combined_df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="output.csv">Download the output</a>'
-    st.markdown(href, unsafe_allow_html=True)
-    # create scatter plot matrix for pH, Iron, Nitrate, and Chloride variables
-    sns.pairplot(data=input_data[['pH', 'Iron', 'Nitrate', 'Chloride']])
+
+    # Creating a downloadable button for Ouput CSV
+    csv = convert_df(combined_df)
+    st.download_button(
+    label="Download data as CSV",
+    data=csv,
+    file_name='Output.csv',
+    mime='text/csv')
+
+    # Summary of output data
+    st.write("---")
+    st.header("Data Overview")
+
+    st.subheader("1. Output Overview")
+    piechartexpander = st.expander("🔎 Click here to view the graph")
+    with piechartexpander :
+        quality_counts = combined_df['Quality'].value_counts()
+        fig, ax = plt.subplots()
+        ax.pie(quality_counts.values, labels=quality_counts.index, autopct='%1.1f%%')
+        ax.set_title('Distribution of Output Results in Dataset')
+        st.pyplot(fig)
+
+    st.subheader("2. Distribution of pH levels in Data")
+    phexpander = st.expander("🔎 Click here to view the graph")
+    with phexpander:
+        ph_data=combined_df[['pH']]
+        st.line_chart(ph_data)
+
+    st.subheader("3. Distribution of mineral elements in water")
+    distributionexpander = st.expander("🔎 Click here to view the graph")
+    with distributionexpander:
+        chart_data=combined_df[['pH','Iron','Nitrate','Chloride','Lead','Zinc','Color','Turbidity','Fluoride','Copper','Sulfate','Chlorine','Manganese']]
+        st.bar_chart(chart_data)
+
+    st.subheader("4. Distribution of water properties")
+    propertyexpander = st.expander("🔎 Click here to view the graph")
+    with propertyexpander:
+        prop_data=combined_df[['Color','Conductivity','Total_Dissolved_Solids']]
+        st.area_chart(prop_data)
+    
+    st.subheader("5. Temperature Distribution")
+    tempexpander = st.expander("🔎 Click here to view the graph")
+    with tempexpander :
+        prop_data=combined_df[['Water_Temperature','Air_Temperature']]
+        st.line_chart(prop_data)
 
 
-    st.subheader("Prediciton Overview")
-    # create bar chart of quality ratings
-    quality_counts = combined_df['Quality'].value_counts()
-    fig, ax = plt.subplots()
-    ax.bar(quality_counts.index, quality_counts.values)
-    ax.set_xlabel('Quality Rating')
-    ax.set_ylabel('Number of Samples')
-    st.pyplot(fig)
-
-    st.subheader("pH level frequency")
-    # create histogram of pH levels
-    fig, ax = plt.subplots()
-    ax.hist(combined_df['pH'], bins=20)
-    ax.set_xlabel('pH Value')
-    ax.set_ylabel('Frequency')
-    st.pyplot(fig)
-
-    st.subheader("Distribution of pH, Iron, Nitrate, and Chloride variables")
-    # create scatter plot matrix for pH, Iron, Nitrate, and Chloride variables
-    fig = sns.pairplot(data=combined_df[['pH', 'Iron', 'Nitrate', 'Chloride']])
-    st.pyplot(fig)
 
 # Define Streamlit app
 def main():
@@ -120,13 +137,20 @@ def main():
 
     # Display sample template for user to download
     sample_template = pd.DataFrame(default_values, index=[0])
-    st.markdown(download_csv(sample_template, 'sample_template'), unsafe_allow_html=True)
-        
+     # Converting to CSV as downloadable button
+    template_content = convert_df(sample_template)
+    st.download_button(
+    label="Download data as CSV",
+    data=template_content,
+    file_name='Sample-template.csv',
+    mime='text/csv')
+
     # Read uploaded CSV file
     if uploaded_file is not None:
         test_data = read_csv(uploaded_file)
-        st.write('Uploaded CSV file:')
-        st.write(test_data)
+        expander = st.expander("🔎 Click to view uploaded file content")
+        with expander:
+            st.write(test_data)
             # Create a submit button
         submit = st.button("Check  Quality 🔬",type="primary")
 
@@ -142,6 +166,11 @@ def main():
         # Set page footer 
     st.write("\n\nMade with :heart: by Team Humanoids 🤖")
     st.write("Intel® oneAPI Hackathon for Open Innovation 2023.")
+
+# Function to convert DF to CSV
+def convert_df(df):
+    return df.to_csv().encode('utf-8')
+
 if __name__ == '__main__':
     main()
     
