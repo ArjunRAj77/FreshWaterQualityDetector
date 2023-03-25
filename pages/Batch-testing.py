@@ -140,7 +140,7 @@ def main():
      # Converting to CSV as downloadable button
     template_content = convert_df(sample_template)
     st.download_button(
-    label="Download data as CSV",
+    label="Click here to download the template file",
     data=template_content,
     file_name='Sample-template.csv',
     mime='text/csv')
