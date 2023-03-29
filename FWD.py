@@ -104,7 +104,7 @@ def output(quality,input_features):
     st.subheader("Final Output 💧")
     if quality[0] == "Bad" and override_feature==1:
         st.warning(f"Predicted Quality of water : Unsafe for consumption.")
-        st.warning(f"Note : The intial predicted quality of water by FWD model was : 'Safe to drink'  \n\n But due to multiple safe limit violations, override feature was activated.\n\n Please refer to the 'detailed analysis' section for more details.")
+        #st.warning(f"Note : The intial predicted quality of water by FWD model was : 'Safe to drink'  \n\n But due to multiple safe limit violations, override feature was activated.\n\n Please refer to the 'detailed analysis' section for more details.")
         st.warning("🚨 Alert! 🚨 \n\n The predicted drinkability of your water is below safe levels. We recommend that you do not drink this water and take necessary precautions to ensure your health and safety. \n\n Please consult with a water expert or local authorities for further guidance.")
     elif quality[0] == "Bad" and override_feature==0:
         st.warning(f"Predicted Quality of water : Unsafe for consumption.")
