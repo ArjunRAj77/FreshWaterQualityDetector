@@ -97,7 +97,7 @@ def output(quality,input_features):
     analysis_expander = st.expander("🌌 Click here for a detailed breakdown")
     with analysis_expander:
         flags=regulatory_limit_check(input_features)
-        if flags >=3 and quality[0]!="Bad":
+        if flags >=2 and quality[0]!="Bad":
             quality[0]="Bad"
             override_feature=1
     
@@ -147,7 +147,7 @@ def regulatory_limit_check(input_features):
         flag_counter=flag_counter+2
     else :
         st.warning("The water is too acidic, which can also affect its taste and quality. \n\n Low pH levels can cause corrosion of plumbing fixtures and release toxic metals like lead and copper into the water. \n\n To make the water more drinkable, you could consider adding an alkalizing agent like baking soda or calcium carbonate. However, if the pH is consistently low, it may be a sign of underlying environmental factors like acid rain or nearby industrial pollution, which should be addressed to ensure safe drinking water.")
-        flag_counter=flag_counter+1
+        flag_counter=flag_counter+2
 
     st.subheader("Iron")
     if ironvalue >=0.3 and ironvalue <=1.0:
@@ -229,7 +229,7 @@ def regulatory_limit_check(input_features):
         st.info("Chlorine levels between 0.2 and 2.0 mg/litre are considered safe for drinking and effective for disinfection.")
     else:
         st.warning("Chlorine levels above 2.0 mg/litre may affect the taste and odor of water and may cause irritation to the eyes and skin.")
-        flag_counter=flag_counter+1
+        flag_counter=flag_counter+2
 
     st.subheader("Manganese ")
     if manganesevalue <= 0.1:
@@ -249,10 +249,10 @@ def regulatory_limit_check(input_features):
         st.info("This is considered fair drinking water quality. Some people may notice a slightly salty taste. \n\nWater softening or reverse osmosis treatment may be recommended to reduce TDS levels.")
     elif tdsvalue > 900 and tdsvalue<=1200:
         st.warning("This is considered poor drinking water quality. \n\n The water may have a salty taste, and reverse osmosis or distillation treatment may be necessary to make it drinkable.")
-        flag_counter=flag_counter+1
+        flag_counter=flag_counter+2
     else:
         st.warning("This is considered unacceptable drinking water quality. The water may have a very salty taste and can cause health problems if consumed regularly.\n\n Reverse osmosis or distillation treatment is necessary to make the water safe to drink.")
-        flag_counter=flag_counter+1
+        flag_counter=flag_counter+2
     
     st.subheader("Water Temperature")
     if watertempvalue >=4.4 and watertempvalue<=60:
