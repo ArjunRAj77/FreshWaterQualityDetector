@@ -139,7 +139,7 @@ def regulatory_limit_check(input_features):
     airtempvalue=input_features[0][17] 
     flag_counter=0
     # Displaying the additional insights
-    st.subheader("pH")
+    st.subheader("💠pH")
     if phvalue >= 6.5 and phvalue <=8.5:
         st.info("Congratulations! The pH of the water is within the recommended range for drinking water. \n\n This means that the water is safe to drink and should not cause any adverse health effects.")
     elif phvalue > 8.5 :  
@@ -149,7 +149,7 @@ def regulatory_limit_check(input_features):
         st.warning("The water is too acidic, which can also affect its taste and quality. \n\n Low pH levels can cause corrosion of plumbing fixtures and release toxic metals like lead and copper into the water. \n\n To make the water more drinkable, you could consider adding an alkalizing agent like baking soda or calcium carbonate. However, if the pH is consistently low, it may be a sign of underlying environmental factors like acid rain or nearby industrial pollution, which should be addressed to ensure safe drinking water.")
         flag_counter=flag_counter+2
 
-    st.subheader("Iron")
+    st.subheader("💠 Iron")
     if ironvalue >=0.3 and ironvalue <=1.0:
         st.warning("The water may have a metallic taste, and there may be slight staining of clothes and fixtures. \n\n  In this case, treatment may not be necessary, but installing an iron filter can help improve the taste and quality of water.") 
         flag_counter=flag_counter+1
@@ -160,7 +160,7 @@ def regulatory_limit_check(input_features):
         st.info("If the iron levels are below 0.3 mg/litre, the water is considered safe to drink, and no treatment is necessary.")
 
       
-    st.subheader("Nitrate")
+    st.subheader("💠Nitrate")
     if nitratevalue >= 45 :
         flag_counter=flag_counter+1
         st.warning("If the nitrate level in water is above 45 mg/litre, it is not safe for drinking, particularly for infants under six months old. \n\n Nitrate can cause methemoglobinemia, a condition in which the blood is unable to carry oxygen properly. This can result in bluish skin and lips, shortness of breath, and even death in severe cases. \n\n  To make the water safe for drinking, treatment methods such as reverse osmosis, distillation, or ion exchange can be used to remove excess nitrates from the water. It is also important to identify and address the source of nitrate pollution, such as reducing the use of fertilizers or properly managing animal waste.")
@@ -168,70 +168,70 @@ def regulatory_limit_check(input_features):
 
         st.info("The nitrate level of water is well within the safe for drinking.")
     
-    st.subheader("Chloride")
+    st.subheader("💠 Chloride")
     if chloridevalue >=250:
         st.warning("Chloride levels above 250 mg/litre may affect the taste of water and cause corrosion in pipes and fixtures. However, it is not considered dangerous for human health.\n\n To reduce high Chloride levels in water, you can consider using a water softener or reverse osmosis filtration system. It's recommended to consult a water treatment specialist to determine the best solution for your specific situation.")
         flag_counter=flag_counter+1
     else:
         st.info("Chloride levels below 250 mg/litre are considered safe and suitable for drinking water.")
     
-    st.subheader("Lead")
+    st.subheader("💠 Lead")
     if leadvalue >=0.05:
         st.warning("If the lead level in drinking water is above the recommended limit of 0.05 µg/litre, it can be harmful to human health. \n\nLong-term exposure to high levels of lead can cause serious health problems such as developmental delays, neurological damage, and damage to vital organs such as the liver and kidneys. If you suspect that your water contains high levels of lead, it is important to take immediate action to reduce the exposure.\n\n Solutions to reduce the levels of lead in drinking water include installing a lead removal water filter or replacing lead pipes with non-toxic materials. In addition, running the tap for a few minutes before using the water can also help to flush out any lead that may have accumulated in the pipes.")
         flag_counter=flag_counter+1
     else:
         st.info("the lead level in drinking water is within the recommended limit of 0.05 µg/litre, so it is safe to drink.")
     
-    st.subheader("Zinc")
+    st.subheader("💠 Zinc")
     if zincvalue >0.2:
         st.warning("Zinc levels above 0.2 mg/litre are considered dangerous and can cause stomach cramps, nausea, and vomiting. \n\n To reduce the levels of zinc in water, treatment methods such as reverse osmosis or activated carbon filtration can be used. It is important to consult with a water treatment professional to determine the most appropriate treatment method for your specific situation.")
         flag_counter=flag_counter+1
     else:
         st.info("Zinc levels below 0.2 mg/litre are suitable for drinking water.")
     
-    st.subheader("Sulphate")
+    st.subheader("💠 Sulphate")
     if sulfatevalue >=250:
         st.warning(" Sulfate levels above 250 µg/litre are considered dangerous and should be treated to reduce the levels.\n\n  There are different approaches to treating high sulfate levels in water, depending on the specific situation. One common method is ion exchange, which involves exchanging sulfate ions for chloride ions. Reverse osmosis is another effective treatment method that removes sulfate ions from water by passing it through a membrane. \n\n  In some cases, blending water sources or diluting high sulfate water with lower sulfate water may be a solution. It's important to consult with a water treatment professional to determine the best approach for your specific situation.")
         flag_counter=flag_counter+1
     else:
         st.info("Sulfate levels below 250 µg/litre are considered safe to drink.")
     
-    st.subheader("Conductivity")
+    st.subheader("💠 Conductivity")
     if conductivityvalue >1500 :
         st.warning("Conductivity levels above 1500 µS/cm may indicate high levels of dissolved solids and may affect the taste and quality of the water.\n\nIf the conductivity level is too high, the following solutions may be used:\n\nReverse osmosis: A process where water is forced through a semipermeable membrane to remove impurities, including dissolved solids.\n\n Distillation: A process where water is boiled and the resulting steam is collected and condensed into purified water. \n\n Ion exchange: A process where ions in the water are exchanged with other ions to remove dissolved solids.")
         flag_counter=flag_counter+1
     else:
         st.info("In general, for drinking water, a conductivity range of 50-1500 µS/cm (microsiemens per centimeter) is considered safe. ")
     
-    st.subheader("Turbidity")
+    st.subheader("💠Turbidity")
     if turbidityvalue>5:
         st.warning("Turbidity levels higher than 5 NTU can affect the taste and odor of water and can also cause gastrointestinal distress.")
         flag_counter=flag_counter+1
     else:
         st.info("Turbidity is a measure of the clarity of water.\n\nTurbidity levels of 5 NTU (Nephelometric Turbidity Units) or less are considered safe for drinking water. ")
     
-    st.subheader("Fluoride")
+    st.subheader("💠Fluoride")
     if fluoridevalue >1.5:
         st.warning("High levels of fluoride can cause dental fluorosis, a condition that affects the teeth. Fluoride levels above 1.5 mg/litre are considered dangerous and should be treated to reduce the levels.\n\nOne solution is to install a reverse osmosis system or an activated alumina defluoridation filter. \n\nAnother option is to use bottled water with a low fluoride content for drinking and cooking. It is important to note that some toothpaste and mouthwash also contain fluoride, so be mindful of your overall fluoride intake.")
         flag_counter=flag_counter+1
     else:
         st.info("Fluoride levels in your drinking water are within the safe limit of 1.5 mg/litre")
     
-    st.subheader("Copper")
+    st.subheader("💠Copper")
     if coppervalue >=80:
         st.warning("If copper levels in your drinking water are above 80 µg/L, it could cause gastrointestinal problems such as nausea, vomiting, and diarrhea.\n\nTo reduce copper levels in your drinking water, consider installing a point-of-use water treatment system that uses activated carbon or reverse osmosis technology.\n\nIf you are concerned about the copper levels in your drinking water, you may want to have your water tested by a certified laboratory to determine the level of contamination and the best treatment option.")
         flag_counter=flag_counter+1
     else:
         st.info("If copper levels in your drinking water are below 80 µg/L, your water is considered safe to drink.")
     
-    st.subheader("Chlorine")
+    st.subheader("💠Chlorine")
     if chlorinevalue >=0 and chlorinevalue<=2.0:
         st.info("Chlorine levels between 0.2 and 2.0 mg/litre are considered safe for drinking and effective for disinfection.")
     else:
         st.warning("Chlorine levels above 2.0 mg/litre may affect the taste and odor of water and may cause irritation to the eyes and skin.")
         flag_counter=flag_counter+2
 
-    st.subheader("Manganese ")
+    st.subheader("💠Manganese ")
     if manganesevalue <= 0.1:
         st.info("This is considered safe for drinking and should not cause any harm to human health or the taste and odor of water.")
     elif manganesevalue >0.1 and manganesevalue <=0.5:
@@ -240,7 +240,7 @@ def regulatory_limit_check(input_features):
         st.warning(" This level of manganese is considered dangerous and can cause health effects, such as neurological symptoms and developmental delays in children.\n\n A water treatment system, such as a reverse osmosis or distillation system, can be used to effectively reduce the levels of manganese in water.")
         flag_counter=flag_counter+1
     
-    st.subheader("TDS : Total Dissolved Solids")
+    st.subheader("💠TDS : Total Dissolved Solids")
     if tdsvalue <= 300 :
         st.info("This is considered excellent drinking water quality. No treatment is necessary, and the water is safe to drink.")
     elif tdsvalue >300 and tdsvalue<=600:
@@ -254,7 +254,7 @@ def regulatory_limit_check(input_features):
         st.warning("This is considered unacceptable drinking water quality. The water may have a very salty taste and can cause health problems if consumed regularly.\n\n Reverse osmosis or distillation treatment is necessary to make the water safe to drink.")
         flag_counter=flag_counter+2
     
-    st.subheader("Water Temperature")
+    st.subheader("💠Water Temperature")
     if watertempvalue >=4.4 and watertempvalue<=60:
         st.info("Water temperature between 40°F (4.4°C) and 140°F (60°C) is considered safe for drinking. Temperatures outside of this range may affect the taste and odor of water.")
     elif watertempvalue <4.4 :
