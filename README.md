@@ -16,15 +16,19 @@ Exploring the potential of machine learning in predicting the quality of fresh w
  
  you can simply check the website : [Fresh Water Quality Detector](https://arjunraj77-freshwaterqualitydetector-fwd-g5t41i.streamlit.app/)
 
- ## Simple Screenshots
- <img width="881" alt="image" src="https://user-images.githubusercontent.com/23217592/221599988-aefea354-277d-4d2a-ab7d-c0151a8c7bb8.png">
- <img width="831" alt="image" src="https://user-images.githubusercontent.com/23217592/221600223-f6e0367d-aa56-4b22-8c48-1655728a6388.png">
+ ## 💠 Screenshots
+![image](https://user-images.githubusercontent.com/23217592/229701792-2dce2417-920a-48d5-a7cd-b8eb6d725df2.png)
+![image](https://user-images.githubusercontent.com/23217592/229702014-5fdbfc53-35c9-4bba-aa64-36cec421a2fb.png)
+![image](https://user-images.githubusercontent.com/23217592/229702166-79af6fb6-bca9-4f0d-98a0-00533afaee0e.png)
+![image](https://user-images.githubusercontent.com/23217592/229702198-b978966b-d638-4bf1-b27c-aa2f80ce7fda.png)
 
- ## Dataset
+
+
+ ## 💠 Dataset
  
  The dataset can be downloaded from [here.](https://s3-ap-southeast-1.amazonaws.com/he-public-data/datasetab75fb3.zip)
  
- ## Team members
+ ## 💠 Team members
  
  - [Arjun Raj](https://www.linkedin.com/in/arjun-raj-pala/)
  - [Akhil Anil](https://www.linkedin.com/in/akhil-m-anil-2bb54a122/)
