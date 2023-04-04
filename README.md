@@ -4,6 +4,8 @@ Exploring the potential of machine learning in predicting the quality of fresh w
 
  Our aim is to create an accurate and efficient model that can determine the quality of fresh water based on various factors such as source, location, season, etc. The repository contains the code and data used in the development of the model, as well as the results and findings of the project.
  
+ Intel DevMesh Project : [Fresh Water Quality Detector](https://devmesh.intel.com/projects/fwd-fresh-water-quality-detector)
+ 
  # ⚡Instructions
  
  - Step 1 : Download the repository files.
